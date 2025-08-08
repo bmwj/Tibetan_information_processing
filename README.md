@@ -1,1 +1,0 @@
-你好，我是 Tibetan_information_processing 项目的作者。
