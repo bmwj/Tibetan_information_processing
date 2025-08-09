@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-01-06
+# 描述：本模块实现了插入排序算法，用于对藏文数据进行排序。
 """
 insertion_Sort.py - 藏文插入排序实现
 This script implements an insertion sort algorithm for Tibetan words.
