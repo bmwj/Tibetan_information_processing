@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-01-01
+# 功能：藏文字的堆排序算法实现
 """
 Heap_Sort.py - 藏文堆排序实现
 This script implements a heap sort algorithm for Tibetan words.

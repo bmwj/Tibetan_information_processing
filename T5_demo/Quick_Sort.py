@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-01-10
+# 功能：藏文快速排序算法实现
 """
 Quick_Sort.py - 藏文快速排序实现
 This script implements a quick sort algorithm for Tibetan words.

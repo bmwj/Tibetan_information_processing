@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-01-09
+# 功能：藏文归并排序算法实现
 """
 Merge_Sort.py - 藏文归并排序实现
 This script implements a merge sort algorithm for Tibetan words.

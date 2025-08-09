@@ -1,5 +1,8 @@
 # coding=utf-8
-# 
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-01-01
+# 功能：全藏字生成
 class TibetStr:
     def __init__(self, jcz_path):
         self.jcz_path = jcz_path

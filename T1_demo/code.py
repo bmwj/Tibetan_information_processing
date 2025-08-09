@@ -1,4 +1,8 @@
 # coding:utf-8
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-01-04
+# 功能：藏文音节分类
 import xlwt
 from collections import Counter
 
