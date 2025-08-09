@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏔️ 藏文信息处理系统 🏔️
+# 🏔️ 藏文信息处理-藏文字符的分析🏔️
 
 [![Python](https://img.shields.io/badge/Python-3.6+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
@@ -15,7 +15,7 @@
 
 ## 📝 项目简介
 
-本项目是一个专门用于藏文信息处理的综合系统，包含多个功能模块，从基础的藏文字符生成、分类，到高效的藏文排序算法实现。项目采用Python语言开发，提供了命令行和图形用户界面两种使用方式，能够满足藏文数据处理的各种需求。
+本项目是一个专门用于藏文信息处理的比较基础的学习内容，包含多个功能模块，从基础的藏文字符生成、分类，到高效的藏文排序算法实现。项目采用Python语言开发，提供了命令行和图形用户界面两种使用方式，能够满足藏文数据处理的各种需求。
 
 > 🌟 **特色**：专为藏文设计的排序算法和处理流程，支持多种藏文结构分析和分类。
 
@@ -300,5 +300,4 @@ python T6_demo/Multi_Sort_GUI.py
     <a href="#"><img src="https://img.shields.io/badge/贡献-欢迎-brightgreen.svg" alt="贡献"></a>
     <a href="#"><img src="https://img.shields.io/badge/问题反馈-开放-yellow.svg" alt="问题反馈"></a>
   </p>
-  <p>🙏 感谢使用藏文信息处理系统 🙏</p>
 </div>
