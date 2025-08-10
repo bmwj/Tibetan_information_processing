@@ -2,7 +2,11 @@
 # 创建者：Pemawangchuk
 # 版本：1.0
 # 日期：2025-04-06
-# 描述：藏文字符转换数字编码
+# 描述：藏文字符转换数字编码工具
+"""
+tibetan_text_encoder.py - 藏文字符转换数字编码
+This script converts Tibetan characters to numeric encoding.
+"""
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext, Frame
 import tkinter.font as tkFont
