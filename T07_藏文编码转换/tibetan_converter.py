@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-04-06
+# 描述：藏文基本集转换扩充集
 import sys
 import os
 import tkinter as tk
