@@ -16,19 +16,19 @@
 
 本项目包含以下功能模块：
 
-1. **[全藏字生成](https://github.com/bmwj/Tibetan_information_processing/tree/main/T00_%E5%85%A8%E8%97%8F%E5%AD%97%E7%94%9F%E6%88%90)** - 生成全藏字集
-2. **[藏字构件识别](https://github.com/bmwj/Tibetan_information_processing/tree/main/T01_%E8%97%8F%E5%AD%97%E6%9E%84%E4%BB%B6%E8%AF%86%E5%88%AB)** - 识别和分类藏文字符的构件
-3. **[藏字插入排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T02_%E8%97%8F%E5%AD%97%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)** - 使用插入排序算法对藏文字符进行排序
-4. **[藏字堆排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T03_%E8%97%8F%E5%AD%97%E5%A0%86%E6%8E%92%E5%BA%8F)** - 使用堆排序算法对藏文字符进行排序
-5. **[藏字归并排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T04_%E8%97%8F%E5%AD%97%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)** - 使用归并排序算法对藏文字符进行排序
-6. **[藏字快速排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T05_%E8%97%8F%E5%AD%97%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)** - 使用快速排序算法对藏文字符进行排序
-7. **[藏字排序算法集合](https://github.com/bmwj/Tibetan_information_processing/tree/main/T06_%E8%97%8F%E5%AD%97%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%9B%86%E5%90%88)** - 集成多种排序算法的GUI界面
-8. **[藏文编码转换](https://github.com/bmwj/Tibetan_information_processing/tree/main/T07_%E8%97%8F%E6%96%87%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2)** - 在不同藏文编码格式之间进行转换
-9. **[藏文转拉丁](https://github.com/bmwj/Tibetan_information_processing/tree/main/T08_%E8%97%8F%E6%96%87%E8%BD%AC%E6%8B%89%E4%B8%81)** - 将藏文转换为拉丁字母表示
-10. **[藏文字符转数字编码](https://github.com/bmwj/Tibetan_information_processing/tree/main/T09_%E8%97%8F%E6%96%87%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81)** - 将藏文字符转换为数字编码
-11. **[藏汉电子词典设计](https://github.com/bmwj/Tibetan_information_processing/tree/main/T10_%E8%97%8F%E6%B1%89%E7%94%B5%E5%AD%90%E8%AF%8D%E5%85%B8%E8%AE%BE%E8%AE%A1)** - 藏汉双语电子词典的实现
-12. **[藏字构件动态统计](https://github.com/bmwj/Tibetan_information_processing/tree/main/T11_%E8%97%8F%E5%AD%97%E6%9E%84%E4%BB%B6%E5%8A%A8%E6%80%81%E7%BB%9F%E8%AE%A1)** - 动态统计藏文构件的使用情况
-13. **[多文本藏文音节统计](https://github.com/bmwj/Tibetan_information_processing/tree/main/T12_%E5%A4%9A%E6%96%87%E6%9C%AC%E8%97%8F%E6%96%87%E9%9F%B3%E8%8A%82%E7%BB%9F%E8%AE%A1)** - 对多个藏文文本进行音节统计分析
+**[全藏字生成](https://github.com/bmwj/Tibetan_information_processing/tree/main/T00_%E5%85%A8%E8%97%8F%E5%AD%97%E7%94%9F%E6%88%90)** - 生成全藏字集
+**[藏字构件识别](https://github.com/bmwj/Tibetan_information_processing/tree/main/T01_%E8%97%8F%E5%AD%97%E6%9E%84%E4%BB%B6%E8%AF%86%E5%88%AB)** - 识别和分类藏文字符的构件
+**[藏字插入排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T02_%E8%97%8F%E5%AD%97%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)** - 使用插入排序算法对藏文字符进行排序
+**[藏字堆排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T03_%E8%97%8F%E5%AD%97%E5%A0%86%E6%8E%92%E5%BA%8F)** - 使用堆排序算法对藏文字符进行排序
+**[藏字归并排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T04_%E8%97%8F%E5%AD%97%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)** - 使用归并排序算法对藏文字符进行排序
+**[藏字快速排序](https://github.com/bmwj/Tibetan_information_processing/tree/main/T05_%E8%97%8F%E5%AD%97%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)** - 使用快速排序算法对藏文字符进行排序
+**[藏字排序算法集合](https://github.com/bmwj/Tibetan_information_processing/tree/main/T06_%E8%97%8F%E5%AD%97%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%9B%86%E5%90%88)** - 集成多种排序算法的GUI界面
+**[藏文编码转换](https://github.com/bmwj/Tibetan_information_processing/tree/main/T07_%E8%97%8F%E6%96%87%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2)** - 在不同藏文编码格式之间进行转换
+**[藏文转拉丁](https://github.com/bmwj/Tibetan_information_processing/tree/main/T08_%E8%97%8F%E6%96%87%E8%BD%AC%E6%8B%89%E4%B8%81)** - 将藏文转换为拉丁字母表示
+**[藏文字符转数字编码](https://github.com/bmwj/Tibetan_information_processing/tree/main/T09_%E8%97%8F%E6%96%87%E5%AD%97%E7%AC%A6%E8%BD%AC%E6%95%B0%E5%AD%97%E7%BC%96%E7%A0%81)** - 将藏文字符转换为数字编码
+**[藏汉电子词典设计](https://github.com/bmwj/Tibetan_information_processing/tree/main/T10_%E8%97%8F%E6%B1%89%E7%94%B5%E5%AD%90%E8%AF%8D%E5%85%B8%E8%AE%BE%E8%AE%A1)** - 藏汉双语电子词典的实现
+**[藏字构件动态统计](https://github.com/bmwj/Tibetan_information_processing/tree/main/T11_%E8%97%8F%E5%AD%97%E6%9E%84%E4%BB%B6%E5%8A%A8%E6%80%81%E7%BB%9F%E8%AE%A1)** - 动态统计藏文构件的使用情况
+**[多文本藏文音节统计](https://github.com/bmwj/Tibetan_information_processing/tree/main/T12_%E5%A4%9A%E6%96%87%E6%9C%AC%E8%97%8F%E6%96%87%E9%9F%B3%E8%8A%82%E7%BB%9F%E8%AE%A1)** - 对多个藏文文本进行音节统计分析
 
 ## 🛠️ 技术栈
 
