@@ -1,5 +1,4 @@
 <div align="center">
-
 # 🏔️ 藏文信息处理-藏文字符的分析🏔️
 
 [![Python](https://img.shields.io/badge/Python-3.6+-blue.svg)](https://www.python.org/)
@@ -38,13 +37,13 @@
 - **数据处理**: 自定义算法和数据结构
 - **文件格式**: 纯文本、Excel
 
-## 📥 安装与使用
+### 📥 安装与使用
 
-### 系统要求
+#### 系统要求
 - Python 3.6+
 - 操作系统: Windows/macOS/Linux
 
-### 安装步骤
+#### 安装步骤
 1. 克隆仓库到本地
 ```bash
 git clone https://github.com/yourusername/Tibetan_information_processing.git
@@ -53,10 +52,10 @@ cd Tibetan_information_processing
 
 2. 安装依赖
 ```bash
-pip install -r requirements.txt  # 如果有requirements.txt文件
+pip install -r requirements.txt  
 ```
 
-### 使用方法
+#### 使用方法
 每个模块都可以独立运行，大多数模块提供了shell脚本来简化运行过程：
 
 ```bash
@@ -68,11 +67,11 @@ cd T10_藏汉电子词典设计
 python tibetan-dict-design.py
 ```
 
-## 📊 示例
+### 📊 示例
 
 每个模块都有自己的README文件和示例数据，请参考各模块目录下的说明文件获取详细信息。
 
-## 📚 项目结构
+### 📚 项目结构
 
 ```
 Tibetan_information_processing/
@@ -94,7 +93,7 @@ Tibetan_information_processing/
 └── T12_多文本藏文音节统计/           # 多文本藏文音节统计模块
 ```
 
-## 🤝 贡献
+### 🤝 贡献
 
 欢迎对本项目进行贡献！请遵循以下步骤：
 
@@ -104,17 +103,13 @@ Tibetan_information_processing/
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 打开一个 Pull Request
 
-## 📄 许可证
+### 📄 许可证
 
 本项目采用 MIT 许可证 - 详情请参阅 [LICENSE](LICENSE) 文件。
 
-## 📧 联系方式
+### 📧 联系方式
 
 如有任何问题或建议，请通过以下方式联系我们：
 
 - 项目维护者: [PemaWangchuk](mailto:your.email@example.com)
 - 项目主页: [GitHub仓库](https://github.com/bmwj/Tibetan_information_processing)
-
-## 🙏 致谢
-
-感谢所有为藏文信息处理研究做出贡献的研究人员和开发者。
