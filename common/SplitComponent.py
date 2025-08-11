@@ -513,7 +513,6 @@ class Split_component(object):
             word[char_cur] = Tibetan[i]
 
         return word
-
 if __name__ == '__main__':
     # split = Split_component()
     # print(split.Split('ཨོས'))
