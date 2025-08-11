@@ -3,6 +3,10 @@
 # 版本：1.0
 # 日期：2025-01-04
 # 功能：藏文音节分类
+'''
+Classification.py - 藏文音节分类
+This script classifies Tibetan syllables into different categories.
+'''
 import xlwt
 from collections import Counter
 

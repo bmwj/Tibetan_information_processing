@@ -3,6 +3,10 @@
 # 版本：1.0
 # 日期：2025-04-06
 # 描述：藏文基本集转换扩充集
+'''
+tiben_converter.py - 藏文基本集转换扩充集
+This is a program to convert Tibetan basic set to extended set.
+'''
 import sys
 import os
 import tkinter as tk

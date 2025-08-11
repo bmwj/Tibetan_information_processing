@@ -3,6 +3,10 @@
 # 版本：1.0
 # 日期：2025-01-01
 # 功能：全藏字生成
+"""
+TibetStr.py - 藏文字生成
+This script generates Tibetan characters.
+"""
 class TibetStr:
     def __init__(self, jcz_path):
         self.jcz_path = jcz_path

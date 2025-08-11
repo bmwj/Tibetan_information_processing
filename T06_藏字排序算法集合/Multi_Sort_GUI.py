@@ -2,8 +2,11 @@
 # 创建者：Pemawangchuk
 # 版本：v1.3
 # 日期：2025-05-05
-# 描述：本模块实现了多种排序算法的GUI界面，用于对藏文数据进行排序
-
+# 描述：本模块实现了多种排序算法的GUI界面，用于对藏文字符进行排序
+'''
+Multi_Sort_GUI.py 藏文字符排序GUI界面
+This module implements a GUI interface for sorting Tibetan characters using multiple sorting algorithms.
+'''
 import tkinter as tk
 from tkinter import ttk, filedialog, messagebox
 import time
