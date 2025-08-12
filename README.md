@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏔️ 藏文信息处理-藏文字符的分析🏔️
+# 🏔️ 藏文信息处理-藏文字符的自动分析🏔️
 [![Python](https://img.shields.io/badge/Python-3.6+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/)
@@ -103,13 +103,7 @@ Tibetan_information_processing/
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 打开一个 Pull Request
 
-### 📄 许可证
-
-本项目采用 MIT 许可证 - 详情请参阅 [LICENSE](LICENSE) 文件。
 
 ### 📧 联系方式
-
-如有任何问题或建议，请通过以下方式联系我们：
-
-- 项目维护者: [PemaWangchuk](mailto:your.email@example.com)
+- 项目维护者: [PemaWangchuk](bmwjtibet@gmail.com)
 - 项目主页: [GitHub仓库](https://github.com/bmwj/Tibetan_information_processing)
