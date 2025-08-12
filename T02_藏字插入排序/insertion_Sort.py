@@ -17,8 +17,8 @@ import os
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_root)  # 将项目根目录添加到Python路径
 # 导入common目录下的模块
-from common.Cmp import cmp
-from common.SplitComponent import Split_component
+from common.Comparator import cmp
+from common.TibetanSyllableSegmenter import Split_component
 
 constant_unconverted = [0x0F90, 0x0F91, 0x0F92, 0x0F94, 0x0F95, 0x0F96, 0x0F97, 0x0F99, 0x0F9F, 0x0FA0,
                     0x0FA1, 0x0FA3, 0x0FA4, 0x0FA5,0x0FA6, 0x0FA8, 0x0FA9, 0x0FAA, 0x0FAB, 0x0FAE,

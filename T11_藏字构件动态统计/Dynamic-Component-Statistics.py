@@ -1,3 +1,12 @@
+# -*- coding: UTF-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-04-06
+# 描述：藏字构件动态统计
+'''
+Dynamic-Component-Statistics.py - 藏字构件动态统计
+This program is a dynamic component statistics program.
+'''
 import time
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext, Frame

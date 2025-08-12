@@ -1,3 +1,12 @@
+# -*- coding: UTF-8 -*-
+# 创建者：Pemawangchuk
+# 版本：1.0
+# 日期：2025-04-06
+# 描述：多文本藏文音节统计
+'''
+MultiTextTibetanStats.py - 多文本藏文音节统计
+This program is a multi-text tibetan syllable statistics program.
+'''
 import time
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk, scrolledtext, Frame

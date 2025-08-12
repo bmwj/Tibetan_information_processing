@@ -19,7 +19,7 @@ import os
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_root)  # 将项目根目录添加到Python路径
 # 导入common目录下的模块
-from common.SplitComponent import Split_component
+from common.TibetanSyllableSegmenter import Split_component
 
 ''' 
     在编码中，

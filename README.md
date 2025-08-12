@@ -76,8 +76,8 @@ python tibetan-dict-design.py
 ```
 Tibetan_information_processing/
 ├── common/                          # 公共组件
-│   ├── Cmp.py                       # 比较函数
-│   └── SplitComponent.py            # 分割组件
+│   ├── Comparator.py                       # 比较器
+│   └── TibetanSyllableSegmenter.py            # 藏文音节分割器
 ├── T00_全藏字生成/                   # 全藏字生成模块
 ├── T01_藏字构件识别/                 # 藏字构件识别模块
 ├── T02_藏字插入排序/                 # 藏字插入排序模块
