@@ -916,25 +916,29 @@ class DynamicTibetanComponentAnalyzer:
         )
         progress_frame.pack(fill=X, pady=(20, 0))
         
+        # 进度条容器（确保可见）
+        progress_container = ttk_bs.Frame(progress_frame, height=30)
+        progress_container.pack(fill=X, pady=(5, 10))
+        progress_container.pack_propagate(False)  # 防止子组件影响容器大小
+        
         # 进度条
         self.progress_var = tk.DoubleVar()
         self.progress_bar = ttk_bs.Progressbar(
-            progress_frame,
+            progress_container,
             variable=self.progress_var,
             bootstyle=SUCCESS,
-            length=400,
             mode='determinate'
         )
-        self.progress_bar.pack(fill=X, pady=(0, 10))
+        self.progress_bar.pack(fill=BOTH, expand=True)
         
         # 进度标签
         self.progress_label = ttk_bs.Label(
             progress_frame,
             text="等待开始...",
-            font=('Microsoft YaHei UI', 10),
+            font=('Microsoft YaHei UI', 10, 'bold'),
             bootstyle=INFO
         )
-        self.progress_label.pack()
+        self.progress_label.pack(pady=(0, 5))
         
     def create_status_bar(self):
         """创建状态栏"""
@@ -1045,6 +1049,10 @@ class DynamicTibetanComponentAnalyzer:
         self.progress_var.set(0)
         self.progress_bar.config(maximum=total_chars)
         
+        # 确保进度条可见
+        self.progress_bar.update()
+        self.window.update_idletasks()
+        
         # 清空结果显示
         self.result_text.delete('1.0', 'end')
         
@@ -1052,12 +1060,15 @@ class DynamicTibetanComponentAnalyzer:
         one_fifth = max(1, total_chars // 100)  # 更频繁的更新
         
         for i, ch in enumerate(self.essay):
-            # 更新进度
+            # 更新进度（更频繁地更新进度条）
             if i % one_fifth == 0:
                 progress = (i / total_chars) * 100
-                self.progress_var.set(progress)
+                self.progress_var.set(i)  # 直接设置当前处理的字符数
                 self.progress_label.config(text=f"处理进度: {progress:.1f}% ({i}/{total_chars})")
-                self.window.update()
+                # 强制更新UI
+                self.progress_bar.update()
+                self.progress_label.update()
+                self.window.update_idletasks()
 
             if ch in split_char:
                 split_char[ch] += 1
@@ -1088,8 +1099,8 @@ class DynamicTibetanComponentAnalyzer:
         # 显示结果
         self.display_results(process_time)
         
-        # 更新状态
-        self.progress_var.set(100)
+        # 更新状态 - 设置为最大值而不是百分比
+        self.progress_var.set(total_chars)  # 设置为最大值
         self.progress_label.config(text="分析完成！")
         self.analyze_btn.config(state='normal')
         self.stats_labels['current_status'].config(text="完成")
@@ -1234,6 +1245,8 @@ class DynamicTibetanComponentAnalyzer:
         # 显示加载进度
         self.update_status("正在加载文件...")
         self.progress_var.set(0)
+        self.progress_bar.config(maximum=len(files))
+        self.progress_label.config(text="正在加载文件...")
         
         for i, file_path in enumerate(files):
             try:
@@ -1246,9 +1259,12 @@ class DynamicTibetanComponentAnalyzer:
                     total_size += len(content)
                 
                 # 更新进度
-                progress = ((i + 1) / len(files)) * 100
-                self.progress_var.set(progress)
-                self.window.update()
+                self.progress_var.set(i + 1)
+                self.progress_label.config(text=f"已加载 {i+1}/{len(files)} 个文件")
+                # 强制更新UI
+                self.progress_bar.update()
+                self.progress_label.update()
+                self.window.update_idletasks()
                     
             except Exception as e:
                 failed_files.append((file_path, str(e)))
