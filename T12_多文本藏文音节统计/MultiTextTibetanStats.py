@@ -61,7 +61,7 @@ class TibetanSyllableAnalyzer:
         # 窗口基本设置
         self.window.title('🏔️ 多文本藏文音节统计分析器')
         self.window.geometry('1200x800+300+100')
-        self.window.minsize(1000, 700)
+        self.window.minsize(1200, 800)
         
         # 创建主容器
         self.create_main_container()
@@ -72,6 +72,42 @@ class TibetanSyllableAnalyzer:
         self.create_results_section()
         self.create_control_section()
         self.create_status_bar()
+        
+        # 绑定窗口大小变化事件，以便调整区域比例
+        self.window.bind("<Configure>", self.on_window_resize)
+    
+    def on_window_resize(self, event=None):
+        """窗口大小变化时调整区域比例"""
+        # 只处理窗口大小变化事件，忽略其他控件的大小变化事件
+        if event and event.widget == self.window:
+            try:
+                # 获取当前窗口宽度
+                window_width = self.window.winfo_width()
+                
+                # 如果窗口宽度有效，重新计算各区域宽度
+                if window_width > 100:  # 避免处理初始化阶段的无效宽度
+                    # 查找结果区域的容器框架
+                    for widget in self.main_frame.winfo_children():
+                        if isinstance(widget, ttk_bs.Frame):
+                            container_frame = widget
+                            break
+                    else:
+                        return
+                    
+                    # 查找三个主要区域框架
+                    frames = [w for w in container_frame.winfo_children() if isinstance(w, ttk_bs.LabelFrame)]
+                    if len(frames) == 3:
+                        # 计算新的宽度
+                        preview_width = int(window_width * 0.6 * 0.9)  # 60%，考虑内边距
+                        stats_width = int(window_width * 0.25 * 0.9)   # 25%，考虑内边距
+                        control_width = int(window_width * 0.15 * 0.9) # 15%，考虑内边距
+                        
+                        # 设置新的宽度
+                        frames[0].config(width=preview_width)  # 内容预览
+                        frames[1].config(width=stats_width)    # 统计结果
+                        frames[2].config(width=control_width)  # 控制面板
+            except Exception as e:
+                print(f"调整大小时出错: {e}")
         
     def create_main_container(self):
         """创建主容器"""
@@ -182,72 +218,129 @@ class TibetanSyllableAnalyzer:
         
     def create_results_section(self):
         """创建结果显示区域"""
+        # 使用pack布局管理器，通过设置固定宽度来控制比例
         results_frame = ttk_bs.Frame(self.main_frame)
         results_frame.pack(fill=BOTH, expand=True)
         
-        # 左侧：统计结果
+        # 获取窗口宽度（估计值，实际会根据窗口大小动态调整）
+        window_width = 1200  # 估计值
+        
+        # 计算各区域宽度
+        preview_width = int(window_width * 0.6)  # 60%
+        stats_width = int(window_width * 0.25)   # 25%
+        control_width = int(window_width * 0.15) # 15%
+        
+        # 创建一个容器框架来包含所有区域
+        container_frame = ttk_bs.Frame(results_frame)
+        container_frame.pack(fill=BOTH, expand=True)
+        
+        # 左侧：内容预览 (50%)
         left_frame = ttk_bs.LabelFrame(
-            results_frame,
-            text="📊 统计结果",
+            container_frame,
+            text="📄 内容预览",
             padding=10,
-            bootstyle=PRIMARY
+            bootstyle=PRIMARY,
+            width=preview_width
         )
-        left_frame.pack(side=LEFT, fill=BOTH, expand=True, padx=(0, 10))
+        left_frame.pack(side=LEFT, fill=BOTH, expand=True, padx=(0, 5), pady=0)
         
-        # 创建带滚动条的文本框
-        text_frame = ttk_bs.Frame(left_frame)
-        text_frame.pack(fill=BOTH, expand=True)
+        # 强制使用指定宽度
+        left_frame.pack_propagate(False)
         
-        self.result_text = tk.Text(
-            text_frame,
+        # 创建带滚动条的文本框（内容预览）
+        preview_frame = ttk_bs.Frame(left_frame)
+        preview_frame.pack(fill=BOTH, expand=True)
+        
+        self.preview_text = tk.Text(
+            preview_frame,
             font=('Consolas', 12),
             wrap=tk.WORD,
             padx=10,
             pady=10
         )
         
-        # 滚动条
-        scrollbar = ttk_bs.Scrollbar(text_frame, orient=VERTICAL)
-        self.result_text.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=self.result_text.yview)
+        # 滚动条（内容预览）
+        preview_scrollbar = ttk_bs.Scrollbar(preview_frame, orient=VERTICAL)
+        self.preview_text.config(yscrollcommand=preview_scrollbar.set)
+        preview_scrollbar.config(command=self.preview_text.yview)
+        
+        self.preview_text.pack(side=LEFT, fill=BOTH, expand=True)
+        preview_scrollbar.pack(side=RIGHT, fill=Y)
+        
+        # 中间：统计结果 (30%)
+        middle_frame = ttk_bs.LabelFrame(
+            container_frame,
+            text="📊 统计结果",
+            padding=10,
+            bootstyle=INFO,
+            width=stats_width
+        )
+        middle_frame.pack(side=LEFT, fill=BOTH, expand=True, padx=5, pady=0)
+        
+        # 强制使用指定宽度
+        middle_frame.pack_propagate(False)
+        
+        # 创建带滚动条的文本框（统计结果）
+        result_frame = ttk_bs.Frame(middle_frame)
+        result_frame.pack(fill=BOTH, expand=True)
+        
+        self.result_text = tk.Text(
+            result_frame,
+            font=('Consolas', 12),
+            wrap=tk.WORD,
+            padx=10,
+            pady=10
+        )
+        
+        # 滚动条（统计结果）
+        result_scrollbar = ttk_bs.Scrollbar(result_frame, orient=VERTICAL)
+        self.result_text.config(yscrollcommand=result_scrollbar.set)
+        result_scrollbar.config(command=self.result_text.yview)
         
         self.result_text.pack(side=LEFT, fill=BOTH, expand=True)
-        scrollbar.pack(side=RIGHT, fill=Y)
+        result_scrollbar.pack(side=RIGHT, fill=Y)
         
-        # 右侧：控制面板
+        # 右侧：控制面板 (20%)
         right_frame = ttk_bs.LabelFrame(
-            results_frame,
+            container_frame,
             text="🎛️ 控制面板",
-            padding=15,
-            bootstyle=SUCCESS
+            padding=10,
+            bootstyle=SUCCESS,
+            width=control_width
         )
-        right_frame.pack(side=RIGHT, fill=Y)
+        right_frame.pack(side=LEFT, fill=BOTH, expand=True, padx=(5, 0), pady=0)
+        
+        # 强制使用指定宽度
+        right_frame.pack_propagate(False)
+        
+        # 创建一个内部框架来容纳控制面板内容
+        control_inner_frame = ttk_bs.Frame(right_frame)
+        control_inner_frame.pack(fill=BOTH, expand=True, padx=5, pady=5)
         
         # 统计按钮
         self.analyze_btn = ttk_bs.Button(
-            right_frame,
+            control_inner_frame,
             text="📈 开始统计",
             command=self.count_tibetan,
             bootstyle=SUCCESS,
-            width=20
+            width=15
         )
-        self.analyze_btn.pack(pady=(0, 15))
+        self.analyze_btn.pack(fill=X, pady=(0, 10))
         
         # 进度条
         self.progress_var = tk.DoubleVar()
         self.progress_bar = ttk_bs.Progressbar(
-            right_frame,
+            control_inner_frame,
             variable=self.progress_var,
-            bootstyle=INFO,
-            length=200
+            bootstyle=INFO
         )
-        self.progress_bar.pack(pady=(0, 15))
+        self.progress_bar.pack(fill=X, pady=(0, 15))
         
         # 统计信息
         stats_frame = ttk_bs.LabelFrame(
-            right_frame,
+            control_inner_frame,
             text="📋 统计信息",
-            padding=10,
+            padding=5,
             bootstyle=INFO
         )
         stats_frame.pack(fill=X, pady=(0, 15))
@@ -264,36 +357,36 @@ class TibetanSyllableAnalyzer:
             ttk_bs.Label(
                 stats_frame,
                 text=f"{label}:",
-                font=('Microsoft YaHei UI', 10)
-            ).grid(row=i, column=0, sticky=W, pady=2)
+                font=('Microsoft YaHei UI', 9)
+            ).grid(row=i, column=0, sticky=W, pady=1)
             
             self.stats_labels[key] = ttk_bs.Label(
                 stats_frame,
                 text="0",
-                font=('Microsoft YaHei UI', 10, 'bold'),
+                font=('Microsoft YaHei UI', 9, 'bold'),
                 bootstyle=PRIMARY
             )
-            self.stats_labels[key].grid(row=i, column=1, sticky=E, pady=2, padx=(10, 0))
+            self.stats_labels[key].grid(row=i, column=1, sticky=E, pady=1, padx=(5, 0))
         
         # 保存按钮
         save_btn = ttk_bs.Button(
-            right_frame,
+            control_inner_frame,
             text="💾 保存结果",
             command=self.save_file,
             bootstyle=INFO,
-            width=20
+            width=15
         )
-        save_btn.pack(pady=(0, 15))
+        save_btn.pack(fill=X, pady=(0, 10))
         
         # 退出按钮
         exit_btn = ttk_bs.Button(
-            right_frame,
+            control_inner_frame,
             text="❌ 退出",
             command=self.window.destroy,
             bootstyle=DANGER,
-            width=20
+            width=15
         )
-        exit_btn.pack()
+        exit_btn.pack(fill=X)
         
     def create_control_section(self):
         """创建控制区域"""
@@ -408,7 +501,10 @@ class TibetanSyllableAnalyzer:
         # 按频率降序排序
         all_syllables.sort(key=lambda x: x[1], reverse=True)
         
-        # 显示结果
+        # 清空结果区域
+        self.result_text.delete('1.0', 'end')
+        
+        # 显示统计结果
         self.result_text.insert('1.0', f"{'='*60}\n")
         self.result_text.insert('end', f"藏文音节统计分析结果\n")
         self.result_text.insert('end', f"{'='*60}\n\n")
@@ -422,6 +518,19 @@ class TibetanSyllableAnalyzer:
         for word in all_syllables:
             percentage = (word[1] / total_syllables) * 100
             self.result_text.insert('end', f"{word[0]:<20} {word[1]:<10} {percentage:.2f}%\n")
+        
+        # 更新预览区域，显示处理后的文本样本
+        self.preview_text.delete('1.0', 'end')
+        self.preview_text.insert('1.0', f"{'='*60}\n")
+        self.preview_text.insert('end', f"文本内容预览\n")
+        self.preview_text.insert('end', f"{'='*60}\n\n")
+        
+        # 显示原始文本的一部分
+        if len(self.essay) > 5000:
+            preview_text = self.essay[:2500] + "\n\n...\n\n" + self.essay[-2500:]
+            self.preview_text.insert('end', preview_text)
+        else:
+            self.preview_text.insert('end', self.essay)
         
         # 更新统计信息
         self.stats_labels['total_chars'].config(text=f"{total_chars:,}")
@@ -541,7 +650,7 @@ class TibetanSyllableAnalyzer:
                 text=f"{file_count} 个文件 | {total_size:,} 字符"
             )
             
-            # 显示加载结果
+            # 显示加载结果信息
             result_info = f"文件加载完成\n{'='*50}\n"
             result_info += f"成功加载: {file_count} 个文件\n"
             result_info += f"总字符数: {total_size:,}\n"
@@ -553,18 +662,25 @@ class TibetanSyllableAnalyzer:
                     result_info += f"- {os.path.basename(file_path)}: {error}\n"
                 result_info += "\n"
             
-            # 显示文件预览（如果不太大）
-            if len(self.essay) < 10000:
-                result_info += "文件内容预览:\n" + "-"*30 + "\n"
-                result_info += self.essay[:3000]
-                if len(self.essay) > 3000:
-                    result_info += "\n\n... (内容过长，已截断)\n"
-            else:
-                result_info += "由于内容较多，暂不显示预览\n"
-            
             result_info += "\n点击'开始统计'按钮进行音节分析"
             
+            # 在结果区域显示加载信息
             self.result_text.insert('1.0', result_info)
+            
+            # 在预览区域显示文件内容
+            self.preview_text.delete('1.0', 'end')
+            preview_info = f"文件内容预览\n{'='*50}\n\n"
+            
+            # 显示文件预览（如果不太大）
+            if len(self.essay) < 10000:
+                preview_info += self.essay[:5000]
+                if len(self.essay) > 5000:
+                    preview_info += "\n\n... (内容过长，已截断)\n"
+            else:
+                preview_sample = self.essay[:2000] + "\n\n...\n\n" + self.essay[-2000:]
+                preview_info += preview_sample + "\n\n(内容较多，仅显示部分预览)\n"
+            
+            self.preview_text.insert('1.0', preview_info)
             self.update_status(f"已加载 {file_count} 个文件，共 {total_size:,} 个字符")
             
             # 如果有失败的文件，显示警告
@@ -608,7 +724,11 @@ class TibetanSyllableAnalyzer:
         self.words_count = [[] for i in range(18785)]
         self.file_path_var.set('')
         self.file_info_label.config(text="未选择文件")
+        
+        # 清空文本区域
         self.result_text.delete('1.0', 'end')
+        self.preview_text.delete('1.0', 'end')
+        
         self.progress_var.set(0)
         
         # 重置统计信息

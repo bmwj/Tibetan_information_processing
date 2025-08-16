@@ -545,6 +545,18 @@ class SortApp(tk.Tk):
         self.result_text.insert(tk.END, "排序结果将在此处显示...\n\n请选择文件并开始排序。")
         self.result_text.config(state=tk.DISABLED)
         
+        # 添加按钮框架
+        button_frame = tk.Frame(parent, bg="#ffffff", pady=10)
+        button_frame.pack(fill=tk.X)
+        
+        # 保存结果按钮
+        save_button = ttk.Button(button_frame, text="保存结果", command=self.save_results)
+        save_button.pack(side=tk.LEFT, padx=(0, 10))
+        
+        # 复制到剪贴板按钮
+        copy_button = ttk.Button(button_frame, text="复制到剪贴板", command=self.copy_to_clipboard)
+        copy_button.pack(side=tk.LEFT)
+        
     def update_progress(self, value):
         """更新进度条"""
         self.progress_var.set(value)
@@ -554,6 +566,55 @@ class SortApp(tk.Tk):
         """更新状态信息"""
         self.progress_label.config(text=message)
         
+    def save_results(self):
+        """保存排序结果到文件"""
+        if not hasattr(self, 'words') or not self.words:
+            self.update_bottom_status("没有可保存的排序结果", False)
+            return
+        
+        # 获取当前选择的排序算法名称
+        algorithm_names = {
+            "quick": "快速排序",
+            "heap": "堆排序",
+            "merge": "归并排序",
+            "insertion": "插入排序"
+        }
+        
+        algorithm = self.algorithm.get()
+        algorithm_name = algorithm_names.get(algorithm, algorithm)
+        
+        # 设置默认文件名为 "排序算法名_sort.txt"
+        default_filename = f"{algorithm_name}_sort.txt"
+        
+        filename = filedialog.asksaveasfilename(
+            title="保存排序结果",
+            filetypes=[("文本文件", "*.txt"), ("所有文件", "*.*")],
+            initialfile=default_filename
+        )
+        
+        if filename:
+            try:
+                with open(filename, 'w', encoding='utf-8') as f:
+                    for word in self.words:
+                        f.write(f"{word[0]}\n")
+                self.update_bottom_status(f"结果已保存至: {filename}", True)
+            except Exception as e:
+                self.update_bottom_status(f"保存失败: {str(e)}", False)
+    
+    def copy_to_clipboard(self):
+        """复制排序结果到剪贴板"""
+        if not hasattr(self, 'words') or not self.words:
+            self.update_bottom_status("没有可复制的排序结果", False)
+            return
+            
+        try:
+            result_text = "\n".join([word[0] for word in self.words[:50]])
+            self.clipboard_clear()
+            self.clipboard_append(result_text)
+            self.update_bottom_status("前50个结果已复制到剪贴板", True)
+        except Exception as e:
+            self.update_bottom_status(f"复制失败: {str(e)}", False)
+    
     def update_result(self, message):
         """更新结果文本框"""
         self.result_text.config(state=tk.NORMAL)
@@ -569,7 +630,6 @@ class SortApp(tk.Tk):
         for i in range(3, line_count + 1):
             self.result_text.tag_add("item", f"{i}.0", f"{i}.end+1c")
         
-        self.result_text.config(state=tk.DISABLED)
         self.result_text.config(state=tk.DISABLED)
     
     def update_bottom_status(self, message, is_success=None):
@@ -671,22 +731,15 @@ class SortApp(tk.Tk):
             # 确保排序后进度为100%
             self.after(0, lambda: self.update_progress(100))
                 
-            self.after(0, lambda: self.update_status(f"排序完成，用时 {sort_time:.2f} 秒，正在保存..."))
-            self.after(0, lambda: self.update_bottom_status(f"排序完成，用时 {sort_time:.2f} 秒，正在保存..."))
+            self.after(0, lambda: self.update_status(f"排序完成，用时 {sort_time:.2f} 秒"))
+            self.after(0, lambda: self.update_bottom_status(f"排序完成，用时 {sort_time:.2f} 秒", True))
             
-            success, message = save_file(self.output_path.get(), self.words)
-            
-            if success:
-                self.after(0, lambda: self.update_status(f"排序完成，用时 {sort_time:.2f} 秒"))
-                self.after(0, lambda: self.update_bottom_status(f"操作成功：{message}", True))
-                preview = "排序结果前50个词条:\n\n"
-                for i in range(min(50, len(self.words))):
-                    preview += f"{i+1}. {self.words[i][0]}\n"
-                    
-                self.after(0, lambda: self.update_result(preview))
-            else:
-                self.after(0, lambda: self.update_bottom_status(f"保存文件失败：{message}", False))
-                self.after(0, lambda: self.update_status("保存文件失败"))
+            # 显示排序结果预览
+            preview = "排序结果前50个词条:\n\n"
+            for i in range(min(50, len(self.words))):
+                preview += f"{i+1}. {self.words[i][0]}\n"
+                
+            self.after(0, lambda: self.update_result(preview))
                 
         except Exception as e:
             self.after(0, lambda: self.update_bottom_status(f"排序过程中出错：{str(e)}", False))
