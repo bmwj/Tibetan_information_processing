@@ -185,7 +185,7 @@ class SortApp(tk.Tk):
         # 顶部标题
         title_frame = tk.Frame(self.main_frame, bg="#5c6bc0", pady=20)
         title_frame.pack(fill=tk.X)
-        title_label = tk.Label(title_frame, text="🔧藏文字符排序工具🔧", font=('Helvetica', 24, 'bold'), bg="#5c6bc0", fg="#ffffff")
+        title_label = tk.Label(title_frame, text="📊 藏文字符排序工具 📊", font=('Helvetica', 24, 'bold'), bg="#5c6bc0", fg="#ffffff")
         title_label.pack()
         
         # 顶部文件选择区域
