@@ -58,7 +58,7 @@ python ./Multi_Sort_GUI.py
 ```
 ### mac和linux系统
 ```bash
-python3 ./run_multi_sort_gui.sh
+ ./run_multi_sort_gui.sh
 ```
 
 ## 注意事项

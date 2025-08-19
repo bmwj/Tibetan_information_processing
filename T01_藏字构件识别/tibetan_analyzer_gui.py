@@ -56,9 +56,9 @@ class UIConstants:
     
     # 组件尺寸
     SIZES = {
-        "button_width": 120,
+        "button_width": 100,
         "button_height": 35,
-        "padding": 15,
+        "padding": 10,
         "margin": 10,
         "border_radius": 8
     }
@@ -73,7 +73,7 @@ class UIConstants:
 class ModernButton(tk.Canvas):
     """现代风格按钮组件"""
     
-    def __init__(self, master, text, command=None, width=120, height=35, 
+    def __init__(self, master, text, command=None, width=120, height=50, 
                  bg_color=None, hover_color=None, text_color=None, 
                  font=None, corner_radius=8, **kwargs):
         
@@ -234,7 +234,8 @@ class StyleManager:
                            foreground=colors["text"])
         self.style.configure("Title.TLabel", 
                            font=self.font_manager.create_font(UIConstants.FONT_SIZES["title"], "bold"),
-                           foreground=colors["primary"])
+                           foreground=colors["primary"],
+                           padding=(0, 5, 0, 5))#垂直内边距
         
         # 按钮样式
         self.style.configure("TButton", 
@@ -278,11 +279,11 @@ class StyleManager:
                       background=[("selected", colors["primary"])],
                       foreground=[("selected", colors["text_light"])])
         
-        # 进度条样式 - 现代化美化
-        self.style.configure("TProgressbar", 
-                           background=colors["accent"],
-                           troughcolor=colors["background"],
-                           borderwidth=0, thickness=12)
+        # # 进度条样式 - 现代化美化
+        # self.style.configure("TProgressbar", 
+        #                    background=colors["accent"],
+        #                    troughcolor=colors["background"],
+        #                    borderwidth=0, thickness=12)
         
         # 自定义进度条样式 - 现代化渐变效果
         self.style.configure("Custom.Horizontal.TProgressbar",
@@ -291,18 +292,18 @@ class StyleManager:
                            borderwidth=0,
                            lightcolor="#2ECC71",  # 亮绿色
                            darkcolor="#27AE60",   # 深绿色
-                           thickness=24,          # 增加厚度
+                           thickness=10,          # 增加厚度
                            relief="flat")
         
-        # 动画进度条样式 - 带有光泽效果
-        self.style.configure("Animated.Horizontal.TProgressbar",
-                           background="#4CAF50",
-                           troughcolor="#E8F5E8",
-                           borderwidth=1,
-                           lightcolor="#66BB6A",
-                           darkcolor="#388E3C",
-                           thickness=28,
-                           relief="raised")
+        # # 动画进度条样式 - 带有光泽效果
+        # self.style.configure("Animated.Horizontal.TProgressbar",
+        #                    background="#4CAF50",
+        #                    troughcolor="#E8F5E8",
+        #                    borderwidth=1,
+        #                    lightcolor="#66BB6A",
+        #                    darkcolor="#388E3C",
+        #                    thickness=28,
+        #                    relief="raised")
         
         # 输入框样式
         self.style.configure("TEntry", 
@@ -443,7 +444,7 @@ class TibetanAnalyzerApp:
         title_card.pack(fill=tk.X, pady=(0, UIConstants.SIZES["margin"]), ipady=10)
         
         # 装饰线
-        decoration = tk.Canvas(title_card, height=3, 
+        decoration = tk.Canvas(title_card, height=2, 
                              bg=UIConstants.COLORS["accent"], 
                              highlightthickness=0)
         decoration.pack(fill=tk.X, side=tk.TOP)
@@ -454,8 +455,9 @@ class TibetanAnalyzerApp:
         
         # 标题文本
         title_label = ttk.Label(title_content, 
-                              text="藏文构件识别与分析工具", 
-                              style="Title.TLabel")
+                              text="藏文构件识别与分析工具-བོད་ཡིག་གི་ལྷུ་ལག་ངོས་འཛིན་དང་དབྱེ་ཞིབ་ཡོ་བྱད།", 
+                              style="Title.TLabel",
+                              )
         title_label.pack(side=tk.LEFT)
     
     def _create_content_area(self):
@@ -536,7 +538,7 @@ class TibetanAnalyzerApp:
         
         browse_btn = ModernButton(file_path_frame, text="📁 浏览...", 
                                 command=self._browse_file,
-                                width=80, height=30,
+                                width=80, height=35,
                                 bg_color=UIConstants.COLORS["secondary"])
         browse_btn.pack(side=tk.RIGHT)
         
