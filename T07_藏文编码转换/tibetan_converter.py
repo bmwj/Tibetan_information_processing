@@ -176,12 +176,31 @@ class TibetanConverter:
         self.text0 = self._text_widget(left_frame, "基本集")
 
         # Middle buttons
+        # mid = Frame(convert_frame, bg=self.C_CARD)
+        # mid.pack(side="left", fill="y", padx=10)
+        # self.btn_b2e = self._button(mid, "基本集 >> 扩充集", self.b2e_trans, bg=self.C_SUCCESS)
+        # self.btn_b2e.pack(pady=20)
+        # self.btn_e2b = self._button(mid, "基本集 << 扩充集", self.e2b_trans, bg=self.C_ACCENT)
+        # self.btn_e2b.pack(pady=20)
+        # Middle buttons - 实现上下左右居中
         mid = Frame(convert_frame, bg=self.C_CARD)
         mid.pack(side="left", fill="y", padx=10)
-        self.btn_b2e = self._button(mid, "基本集 >> 扩充集", self.b2e_trans, bg=self.C_SUCCESS)
-        self.btn_b2e.pack(pady=20)
-        self.btn_e2b = self._button(mid, "基本集 << 扩充集", self.e2b_trans, bg=self.C_ACCENT)
-        self.btn_e2b.pack(pady=20)
+
+        # 创建一个容器来居中放置按钮
+        btn_container = Frame(mid, bg=self.C_CARD)
+        btn_container.pack(expand=True, fill="both")
+
+        # 添加一个空白Frame作为顶部弹簧
+        Frame(btn_container, bg=self.C_CARD).pack(expand=True)
+
+        # 按钮区域
+        self.btn_b2e = self._button(btn_container, "基本集 >> 扩充集", self.b2e_trans, bg=self.C_SUCCESS)
+        self.btn_b2e.pack(pady=10)
+        self.btn_e2b = self._button(btn_container, "基本集 << 扩充集", self.e2b_trans, bg=self.C_ACCENT)
+        self.btn_e2b.pack(pady=10)
+
+        # 添加一个空白Frame作为底部弹簧
+        Frame(btn_container, bg=self.C_CARD).pack(expand=True)
 
         # Extended set
         right_frame = self._text_block(convert_frame, "📄 藏文扩展集", "珠穆朗玛—乌金苏通体", 14)
