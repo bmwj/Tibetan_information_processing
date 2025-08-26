@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 # 创建者：Pemawangchuk
 # 版本：2.1
-# 日期：2025-08-12
+# 日期：2025-06-12
 # 描述：藏文拉丁互转工具（优化版）
 
 import tkinter as tk
